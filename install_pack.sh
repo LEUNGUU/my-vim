@@ -1,13 +1,33 @@
 #!/bin/bash
 
 add(){
-git submodule add $1 $2
+git submodule add 'https://github.com/'$1 $2
 }
 
-update(){
-git submodule update --init --remote $1
+PlugStart=(
+'vim-airline/vim-airline' 'vim-airline/vim-airline-themes' 'w0ng/vim-hybrid' 'itchyny/vim-cursorword' 'terryma/vim-multiple-cursors' 'haya14busa/incsearch.vim' 'haya14busa/incsearch-fuzzy.vim' 'jszakmeister/vim-togglecursor' 'tpope/vim-surround' 'tpope/vim-commentary' 'rhysd/accelerated-jk' 'lvht/fzf' 'neoclide/coc.nvim'
+)
+PlugOpt=(
+'pearofducks/ansible-vim' 'hashivim/vim-terraform' 'glench/vim-jinja2-syntax'
+)
+
+install_start(){
+for plug in ${PlugStart[@]};do
+   plugname=$(echo ${plug} | cut -d/ -f2)
+   add ${plug} pack/vendor/start/${plugname}
+done
 }
 
-delete(){
-git rm $1
+install_opt(){
+for plug in ${PlugOpt[@]};do
+   plugname=$(echo ${plug} | cut -d/ -f2)
+   add ${plug} pack/vendor/opt/${plugname}
+done
 }
+
+main(){
+install_start
+install_opt
+}
+
+main
