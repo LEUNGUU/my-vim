@@ -1,5 +1,5 @@
 " mapping
-let mapleader="\<Space>"
+let mapleader=";"
 inoremap <leader>w <Esc>:w<cr>
 nnoremap <leader>x :w\|bd<cr>
 " ,e
@@ -18,20 +18,16 @@ map :Q :q
 map <M-q> :q<Cr>
 
 " tab complete
-" set tags=tags;
-" set autochdir
+set tags=tags
+set autochdir
 
-" function! CleverTab()
-"   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"     return "\<Tab>"
-"   else
-"   if strpart( getline('.'), col('.')-2, 2) =~ '\s$'
-"     return "\<Tab>"
-"   else
-"     return "\<C-N>"
-"   endif
-" endfunction
-" inoremap <Tab> <C-R>=CleverTab()<CR>
-
-
-
+function! CleverTab()
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  elseif strpart( getline('.'), col('.')-2, 2) =~ '\s$'
+    return "\<Tab>"
+  else
+    return "\<C-N>"
+  endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>

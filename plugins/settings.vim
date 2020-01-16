@@ -53,10 +53,13 @@ let g:terraform_fmt_on_save=1
 " vim-terraform
 
 "  vim-jinja2-syntax 
-autocmd BufReadPre *.j2 packadd vim-jinja2-syntax
+" autocmd BufReadPre *.j2 packadd vim-jinja2-syntax
 
 " ansible-vim
-autocmd BufReadPre *.yaml,*.yml packadd ansible-vim
+autocmd BufReadPre *.yaml,*.yml,*.j2 packadd ansible-vim
+let g:ansible_unindent_after_newline = 1
+let g:ansible_attribute_highlight = "ob"
+" ansible-vim
 
 " incsearch-fuzzy
 map z/ <Plug>(incsearch-fuzzy-/)
