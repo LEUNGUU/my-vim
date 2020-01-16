@@ -47,9 +47,16 @@ nmap <silent>k <Plug>(accelerated_jk_gk)
 
 
 " vim-terraform
+autocmd BufReadPre *.tf packadd vim-terraform
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 " vim-terraform
+
+"  vim-jinja2-syntax 
+autocmd BufReadPre *.j2 packadd vim-jinja2-syntax
+
+" ansible-vim
+autocmd BufReadPre *.yaml,*.yml packadd ansible-vim
 
 " incsearch-fuzzy
 map z/ <Plug>(incsearch-fuzzy-/)
