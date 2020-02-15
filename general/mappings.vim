@@ -3,6 +3,8 @@ inoremap <leader>w <Esc>:w<cr>
 nnoremap <leader>x :w\|bd<cr>
 " ,e
 inoremap jj <Esc>
+inoremap kkk <Esc>
+inoremap hhh <Esc>
 " Capital letter
 nnoremap <C-S-U> gUiw
 inoremap <C-S-U> <Esc>gUiwgi
@@ -20,6 +22,18 @@ map <M-q> :q<Cr>
 " switch between buffers
 nnoremap <leader>l :bp<cr>
 nnoremap <leader>k :bn<cr>
+
+" switch between tabs
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+map <leader>6 6gt
+map <leader>7 7gt
+map <leader>8 8gt
+map <leader>9 9gt
+map <leader>t :tabnew<CR>
 
 " tab complete
 "set tags=tags
