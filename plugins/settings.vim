@@ -77,3 +77,6 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 
 " simple fzf
 nnoremap <c-p> :call fzf#Open()<cr>
+
+" rainbow
+let g:rainbow_active = 1

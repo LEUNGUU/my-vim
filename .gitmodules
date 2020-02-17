@@ -44,6 +44,9 @@
 [submodule "pack/vendor/opt/vim-terraform"]
 	path = pack/vendor/opt/vim-terraform
 	url = https://github.com/hashivim/vim-terraform
-[submodule "pack/vendor/opt/vim-jinja2-syntax"]
-	path = pack/vendor/opt/vim-jinja2-syntax
-	url = https://github.com/glench/vim-jinja2-syntax
+[submodule "pack/vendor/start/vim-rainbow"]
+	path = pack/vendor/start/vim-rainbow
+	url = https://github.com/frazrepo/vim-rainbow
+[submodule "pack/vendor/start/vim-gitgutter"]
+	path = pack/vendor/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
