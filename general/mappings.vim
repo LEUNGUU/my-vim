@@ -5,6 +5,7 @@ nnoremap <leader>x :w\|bd<cr>
 inoremap jj <Esc>
 inoremap kkk <Esc>
 inoremap hhh <Esc>
+inoremap llll <Esc>
 " Capital letter
 nnoremap <C-S-U> gUiw
 inoremap <C-S-U> <Esc>gUiwgi
