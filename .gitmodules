@@ -50,6 +50,9 @@
 [submodule "pack/vendor/start/vim-gitgutter"]
 	path = pack/vendor/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "pack/vendor/opt/vim-go"]
+	path = pack/vendor/opt/vim-go
+	url = https://github.com/fatih/vim-go
 [submodule "pack/vendor/start/vim-cool"]
 	path = pack/vendor/start/vim-cool
 	url = https://github.com/romainl/vim-cool
