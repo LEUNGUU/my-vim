@@ -80,3 +80,6 @@ nnoremap <c-p> :call fzf#Open()<cr>
 
 " rainbow
 let g:rainbow_active = 1
+
+" vim-cool
+let g:CoolTotalMatches = 1
