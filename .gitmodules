@@ -56,3 +56,6 @@
 [submodule "pack/vendor/start/vim-cool"]
 	path = pack/vendor/start/vim-cool
 	url = https://github.com/romainl/vim-cool
+[submodule "pack/vendor/start/leetcode.vim"]
+	path = pack/vendor/start/leetcode.vim
+	url = https://github.com/ianding1/leetcode.vim

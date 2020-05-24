@@ -87,3 +87,11 @@ let g:rainbow_active = 1
 
 " vim-cool
 let g:CoolTotalMatches = 1
+
+" leetcode-vim
+let g:leetcode_solution_filetype = 'python3'
+let g:leetcode_browser = 'chrome'
+nnoremap <leader>ll :LeetCodeList<cr>
+nnoremap <leader>lt :LeetCodeTest<cr>
+nnoremap <leader>ls :LeetCodeSubmit<cr>
+nnoremap <leader>li :LeetCodeSignIn<cr>
