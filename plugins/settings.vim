@@ -65,6 +65,10 @@ let g:ansible_attribute_highlight = "ob"
 autocmd BufReadPre *.go packadd vim-go
 " vim-go
 
+" vim-json
+autocmd BufReadPre *.json packadd vim-json
+" vim-json
+
 " incsearch-fuzzy
 map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)

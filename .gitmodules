@@ -59,3 +59,6 @@
 [submodule "pack/vendor/start/leetcode.vim"]
 	path = pack/vendor/start/leetcode.vim
 	url = https://github.com/ianding1/leetcode.vim
+[submodule "pack/vendor/opt/vim-json"]
+	path = pack/vendor/opt/vim-json
+	url = https://github.com/elzr/vim-json
