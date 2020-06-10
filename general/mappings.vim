@@ -50,3 +50,12 @@ map <leader>t :tabnew<CR>
 "  endif
 "endfunction
 "inoremap <Tab> <C-R>=CleverTab()<CR>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+inoremap <C-a> <left>
+inoremap <C-d> <right>
