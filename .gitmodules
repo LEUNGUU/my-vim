@@ -62,6 +62,6 @@
 [submodule "pack/vendor/opt/vim-json"]
 	path = pack/vendor/opt/vim-json
 	url = https://github.com/elzr/vim-json
-[submodule "pack/vendor/start/auto-pairs"]
-	path = pack/vendor/start/auto-pairs
-	url = https://github.com/jiangmiao/auto-pairs
+[submodule "pack/vendor/start/vim-closer"]
+	path = pack/vendor/start/vim-closer
+	url = https://github.com/rstacruz/vim-closer
