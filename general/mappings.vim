@@ -59,3 +59,5 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 inoremap <C-a> <left>
 inoremap <C-d> <right>
+" inoremap <C-w> <up>
+" inoremap <C-s> <down>
