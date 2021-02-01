@@ -1,4 +1,5 @@
 let mapleader=";"
+let g:maplocalleader=','
 inoremap <leader>w <Esc>:w<cr>
 nnoremap <leader>x :w\|bd<cr>
 " ,e
@@ -9,6 +10,10 @@ inoremap llll <Esc>
 " Capital letter
 nnoremap <C-S-U> gUiw
 inoremap <C-S-U> <Esc>gUiwgi
+
+" use accelerate-jk
+vnoremap j gj
+vnoremap k gk
 
 " use ctrl+h/j/k/l switch window
 noremap <C-h> <C-w>h
@@ -23,6 +28,15 @@ map <M-q> :q<Cr>
 " switch between buffers
 nnoremap <leader>l :bp<cr>
 nnoremap <leader>k :bn<cr>
+
+" use ctrl+s to save
+nnoremap <C-s> :<C-u>write<CR>
+
+" double leader toggle visual
+nmap <Leader><Leader> V
+
+" Duplicate paragraph
+nnoremap <Leader>cp yap<S-}>p
 
 " switch between tabs
 map <leader>1 1gt
