@@ -24,6 +24,10 @@ noremap <C-l> <C-w>l
 " use :Q exit
 map :Q :q
 map <M-q> :q<Cr>
+autocmd user_events BufWinEnter * if &buftype == ''
+	\ | nnoremap <silent><buffer> q :quit<CR>
+	\ | endif
+
 
 " switch between buffers
 nnoremap <leader>l :bp<cr>
