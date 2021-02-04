@@ -3,22 +3,21 @@ set synmaxcol=1000
 set modeline
 set report=0
 set lazyredraw " to avoid scrolling problems
-set pastetoggle=<F2>
-" set nowrap
+" set pastetoggle=<F2>
+set nowrapscan
 set hls
-set nocompatible
 set mouse=nv
 set encoding=utf-8
 set visualbell
 set fileformats=unix,dos,mac
 set virtualedit=block
-set formatoptions+=1
+" set formatoptions+=1
 
 " for netrw
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 0
 " let g:netrw_winsize = 20
-let g:netrw_banner = 0
+" let g:netrw_banner = 0
 " let g:netrw_altv = 1
 " augroup ProjectDrawer
 "   autocmd!
@@ -32,6 +31,7 @@ set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set viewdir=$DATA_PATH/view/
+
 autocmd BufEnter * silent! lcd %:p:h
 
 " if sudo, disable vim swap/backup/undo/shada/viminfo writing
