@@ -57,7 +57,7 @@ augroup extensions
 	" autocmd BufRead,BufNewFile *.go set filetype=go
 	autocmd FileType go packadd vim-go | redraw
 	" autocmd BufRead,BufNewFile *.yml set filetype=yaml
-	autocmd FileType yaml packadd ansible-vim | redraw
+	autocmd FileType yaml,yml packadd ansible-vim | redraw
         " autocmd BufRead,BufNewFile *.tf set filetype=tf
         autocmd FileType tf packadd vim-terraform | redraw
         " autocmd BufRead,BufNewFile *.json set filetype=json
@@ -88,6 +88,7 @@ augroup defaults
     autocmd FileType python setlocal omnifunc=python3complete#Complete
     autocmd BufRead,BufEnter .env :ALEDisableBuffer
     autocmd BufEnter,CursorHold * checktime
+    autocmd BufNewFile,BufRead */.kube/config  setfiletype yaml
     autocmd CursorHold * call functions#Save()
 augroup end
 " }}}
@@ -363,6 +364,60 @@ map <leader>7 7gt
 map <leader>8 8gt
 map <leader>9 9gt
 map <leader>t :tabnew<CR>
+
+" Toggle fold
+nnoremap <CR> za
+
+" Focus the current fold by closing all others
+nnoremap <S-Return> zMzvzt
+
+" The plugin rhysd/accelerated-jk moves through display-lines in normal mode,
+" these mappings will move through display-lines in visual mode too.
+vnoremap j gj
+vnoremap k gk
+
+" Navigation in command line
+cnoremap <C-h> <Home>
+cnoremap <C-l> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+
+" Remove spaces at the end of lines
+nnoremap <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+
+" Start an external command with a single bang
+nnoremap ! :!
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Shortcut to use blackhole register by default
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+nnoremap x "_x
+vnoremap x "_x
+nnoremap X "_X
+vnoremap X "_X
+
+" Shortcut to use clipboard with <leader>
+nnoremap <leader>d dd
+vnoremap <leader>d dd
+nnoremap <leader>D DD
+vnoremap <leader>D DD
+nnoremap <leader>c c
+vnoremap <leader>c c
+nnoremap <leader>C C
+vnoremap <leader>C C
+nnoremap <leader>x x
+vnoremap <leader>x x
+nnoremap <leader>X X
+vnoremap <leader>X X
 
 " tab complete
 "set tags=tags
