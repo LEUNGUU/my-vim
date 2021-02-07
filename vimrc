@@ -39,17 +39,8 @@ PlugStart 'haya14busa/incsearch-fuzzy.vim'
 PlugStart 'tpope/vim-surround'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-if system('which fzf')[:-2] != 'fzf not found'
-    if filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim')
-        source /usr/share/vim/vimfiles/plugin/fzf.vim
-        PlugStart 'junegunn/fzf.vim'
-        cnoreabbrev b Buffers<CR>
-        cnoreabbrev find Files<CR>
-        cnoreabbrev gf GFiles<CR>
-        cnoreabbrev fg GFiles<CR>
-        nnoremap <c-p> :call fzf#Open()<cr>
-    endif
-endif
+PlugStart 'lvht/fzf'
+nnoremap <c-p> :call fzf#Open()<cr>
 
 PlugOpt 'dzeban/vim-log-syntax'
 PlugOpt 'w0rp/ale'
