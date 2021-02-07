@@ -39,8 +39,8 @@ PlugStart 'haya14busa/incsearch-fuzzy.vim'
 PlugStart 'tpope/vim-surround'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-PlugStart 'lvht/fzf'
-nnoremap <c-p> :call fzf#Open()<cr>
+PlugStart 'junegunn/fzf'
+PlugStart 'junegunn/fzf.vim'
 
 PlugOpt 'dzeban/vim-log-syntax'
 PlugOpt 'w0rp/ale'
