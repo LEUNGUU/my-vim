@@ -1,4 +1,4 @@
-"{{{ defaults
+" {{{ defaults
 scriptencoding utf-8
 if filereadable(expand('$VIMRUNTIME/defaults.vim'))
     unlet! g:skip_defaults_vim
@@ -13,7 +13,7 @@ filetype plugin indent on
 
 " Switch syntax highlighting on
 syntax on
-"}}}
+" }}}
 
 " Plugin loading and settings
 let g:VimPack_Setup_Folders = ['after', 'autoload', 'backup', 'colors', 'doc', 'snippets', 'spell', 'swaps', 'syntax', 'tags', 'undo']
@@ -75,9 +75,9 @@ augroup extensions
 augroup end
 " }}}
 
+" {{{ autocmds for everything else
 " enable Omnicomplete
 set omnifunc=syntaxcomplete#Complete
-" {{{ autocmds for everything else
 augroup defaults
     autocmd!
     autocmd BufWritePost $MYVIMRC source %
@@ -99,9 +99,9 @@ augroup defaults
     autocmd BufEnter,CursorHold * checktime
     autocmd CursorHold * call functions#Save()
 augroup end
+" }}}
 
 " {{{ all plugins settings
-
 " vim-airline
 let g:airline_powerline_fonts=1
 let g:airline_theme = 'wombat'
@@ -154,9 +154,9 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " ale settings
-
 " }}}
 
+" {{{ conditional settings
 if &diff
     nnoremap <C-q> :qa!<cr>
     set foldmethod=diff
@@ -183,8 +183,9 @@ if exists("&undodir")
     set undodir=~/.vim/undo//
     set undofile
 endif
+" }}}
 
-" common settings
+" {{{ common settings
 set synmaxcol=1000
 set modeline
 set report=0
@@ -200,24 +201,9 @@ set fileformats=unix,dos,mac
 set virtualedit=block
 " set formatoptions+=1
 
-" enable Omnicomplete
-set omnifunc=syntaxcomplete#Complete
-
 " builtin plugins
 packadd! matchit
 packadd! editexisting
-
-" for netrw
-" let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 0
-" let g:netrw_winsize = 20
-" let g:netrw_banner = 0
-" let g:netrw_altv = 1
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :Vexplore
-" augroup END
-
 
 autocmd BufEnter * silent! lcd %:p:h
 
@@ -291,8 +277,7 @@ if exists('+inccommand')
 	set inccommand=nosplit
 endif
 
-" Behavior {{{
-" --------
+" Behavior
 set nowrap                      " No wrap by default
 set linebreak                   " Break long lines at 'breakat'
 set breakat=\ \	;:,!?           " Long lines break chars
@@ -306,9 +291,7 @@ set diffopt=filler,iwhite       " Diff mode: show fillers, ignore whitespace
 set completeopt=menuone         " Always show menu, even for one item
 set completeopt+=noselect       " Do not select a match in the menu
 
-" }}}
-" Editor UI {{{
-" --------------------
+" Editor UI
 set noshowmode          " Don't show mode in cmd window
 set shortmess=aoOTI     " Shorten messages and don't show intro
 set scrolloff=2         " Keep at least 2 lines above/below
@@ -342,6 +325,7 @@ match ExtraWhitespace /\s\+$/
 set showbreak=↪
 set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 "set fillchars=vert:▉,fold:─
+" }}}
 
 " {{{ mappings
 let mapleader=";"
