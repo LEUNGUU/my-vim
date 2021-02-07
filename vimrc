@@ -63,14 +63,14 @@ PlugOpt 'elzr/vim-json'
 " {{{ autocmds for loading extensions
 augroup extensions
 	autocmd!
-	autocmd BufRead,BufNewFile *.go set filetype=go
-	autocmd FileType go slient! packadd vim-go | redraw
-	autocmd BufRead,BufNewFile *.yml set filetype=yaml
-	autocmd FileType yaml slient! packadd ansible-vim | redraw
-        autocmd BufRead,BufNewFile *.tf set filetype=tf
-        autocmd FileType tf slient! packadd vim-terraform | redraw
-        autocmd BufRead,BufNewFile *.json set filetype=json
-        autocmd FileType json slient! packadd vim-json | redraw
+	" autocmd BufRead,BufNewFile *.go set filetype=go
+	autocmd FileType go packadd vim-go | redraw
+	" autocmd BufRead,BufNewFile *.yml set filetype=yaml
+	autocmd FileType yaml packadd ansible-vim | redraw
+        " autocmd BufRead,BufNewFile *.tf set filetype=tf
+        autocmd FileType tf packadd vim-terraform | redraw
+        " autocmd BufRead,BufNewFile *.json set filetype=json
+        autocmd FileType json packadd vim-json | redraw
 	autocmd FileType vim,go,python,zsh,sh,yaml,yml,tf silent! packadd ale | redraw
 augroup end
 " }}}
