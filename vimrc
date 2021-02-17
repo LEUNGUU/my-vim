@@ -23,7 +23,7 @@ let g:VimPack_Auto_Update = 1
 
 call pack#load()
 
-PlugStart 'editorconfig/editorconfig-vim'
+" PlugStart 'editorconfig/editorconfig-vim'
 PlugStart 'tpope/vim-commentary'
 PlugStart 'vim-scripts/vim-indent-object'
 PlugStart 'tpope/vim-surround'
@@ -36,61 +36,60 @@ PlugStart 'itchyny/vim-cursorword'
 PlugStart 'mg979/vim-visual-multi'
 PlugStart 'haya14busa/incsearch.vim'
 PlugStart 'haya14busa/incsearch-fuzzy.vim'
-PlugStart 'tpope/vim-surround'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-PlugStart 'junegunn/fzf'
-PlugStart 'junegunn/fzf.vim'
+" PlugStart 'junegunn/fzf'
+" PlugStart 'junegunn/fzf.vim'
 
-PlugOpt 'dzeban/vim-log-syntax'
-PlugOpt 'w0rp/ale'
-PlugOpt 'mileszs/ack.vim'
-command! -nargs=* Ack :packadd ack.vim | Ack <f-args>
-PlugOpt 'pearofducks/ansible-vim'
-PlugOpt 'hashivim/vim-terraform'
-PlugOpt 'fatih/vim-go'
-PlugOpt 'elzr/vim-json'
+" PlugOpt 'dzeban/vim-log-syntax'
+" PlugOpt 'w0rp/ale'
+" PlugOpt 'mileszs/ack.vim'
+" command! -nargs=* Ack :packadd ack.vim | Ack <f-args>
+" PlugOpt 'pearofducks/ansible-vim'
+" PlugOpt 'hashivim/vim-terraform'
+" PlugOpt 'fatih/vim-go'
+" PlugOpt 'elzr/vim-json'
 
 " {{{ autocmds for loading extensions
-augroup extensions
-	autocmd!
-	" autocmd BufRead,BufNewFile *.go set filetype=go
-	autocmd FileType go packadd vim-go | redraw
-	" autocmd BufRead,BufNewFile *.yml set filetype=yaml
-	autocmd FileType yaml,yml packadd ansible-vim | redraw
-        " autocmd BufRead,BufNewFile *.tf set filetype=tf
-        autocmd FileType tf packadd vim-terraform | redraw
-        " autocmd BufRead,BufNewFile *.json set filetype=json
-        autocmd FileType json packadd vim-json | redraw
-	autocmd FileType vim,go,python,zsh,sh,yaml,yml,tf silent! packadd ale | redraw
-augroup end
+" augroup extensions
+" 	autocmd!
+" 	" autocmd BufRead,BufNewFile *.go set filetype=go
+" 	autocmd FileType go packadd vim-go | redraw
+" 	" autocmd BufRead,BufNewFile *.yml set filetype=yaml
+" 	autocmd FileType yaml,yml packadd ansible-vim | redraw
+"         " autocmd BufRead,BufNewFile *.tf set filetype=tf
+"         autocmd FileType tf packadd vim-terraform | redraw
+"         " autocmd BufRead,BufNewFile *.json set filetype=json
+"         autocmd FileType json packadd vim-json | redraw
+" 	autocmd FileType vim,go,python,zsh,sh,yaml,yml,tf silent! packadd ale | redraw
+" augroup end
 " }}}
 
 " {{{ autocmds for everything else
 " enable Omnicomplete
-set omnifunc=syntaxcomplete#Complete
-augroup defaults
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source %
-    autocmd BufWritePre,InsertLeave * checktime
-    autocmd BufWritePre,InsertLeave * :%s/\s\+$//e
-    autocmd BufWritePre * silent! :%s#\($\n\s*\)\+\%$##
-    autocmd BufWritePre,InsertLeave * silent! :retab!
-    autocmd InsertLeave * call functions#Save()
-    autocmd BufEnter * set cursorline
-    autocmd BufLeave * set nocursorline
-    autocmd BufEnter,BufLeave,BufWritePost * redraw!
-    autocmd CursorHold,BufEnter,BufWritePost,ShellCmdPost * let f=system('[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"')
-    autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let b=system('git branch 2>/dev/null | grep \* | sed "s/\*//g"')
-    autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let c=split(b, '')
-    " autocmd VimEnter * source $MYVIMRC
-    autocmd FileType * set textwidth=80
-    autocmd FileType python setlocal omnifunc=python3complete#Complete
-    autocmd BufRead,BufEnter .env :ALEDisableBuffer
-    autocmd BufEnter,CursorHold * checktime
-    autocmd BufNewFile,BufRead */.kube/config  setfiletype yaml
-    autocmd CursorHold * call functions#Save()
-augroup end
+" set omnifunc=syntaxcomplete#Complete
+" augroup defaults
+"     autocmd!
+"     autocmd BufWritePost $MYVIMRC source %
+"     autocmd BufWritePre,InsertLeave * checktime
+"     autocmd BufWritePre,InsertLeave * :%s/\s\+$//e
+"     autocmd BufWritePre * silent! :%s#\($\n\s*\)\+\%$##
+"     autocmd BufWritePre,InsertLeave * silent! :retab!
+"     autocmd InsertLeave * call functions#Save()
+"     autocmd BufEnter * set cursorline
+"     autocmd BufLeave * set nocursorline
+"     autocmd BufEnter,BufLeave,BufWritePost * redraw!
+"     autocmd CursorHold,BufEnter,BufWritePost,ShellCmdPost * let f=system('[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"')
+"     autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let b=system('git branch 2>/dev/null | grep \* | sed "s/\*//g"')
+"     autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let c=split(b, '')
+"     " autocmd VimEnter * source $MYVIMRC
+"     autocmd FileType * set textwidth=80
+"     autocmd FileType python setlocal omnifunc=python3complete#Complete
+"     autocmd BufRead,BufEnter .env :ALEDisableBuffer
+"     autocmd BufEnter,CursorHold * checktime
+"     autocmd BufNewFile,BufRead */.kube/config  setfiletype yaml
+"     autocmd CursorHold * call functions#Save()
+" augroup end
 " }}}
 
 " {{{ all plugins settings
@@ -120,13 +119,13 @@ nmap <silent>k <Plug>(accelerated_jk_gk)
 " accelerated_jk
 
 " vim-terraform
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
+" let g:terraform_fmt_on_save=1
 " vim-terraform
 
 " ansible-vim
-let g:ansible_unindent_after_newline = 1
-let g:ansible_attribute_highlight = "ob"
+" let g:ansible_unindent_after_newline = 1
+" let g:ansible_attribute_highlight = "ob"
 " ansible-vim
 
 " incsearch-fuzzy
@@ -140,11 +139,11 @@ let g:CoolTotalMatches = 1
 " vim-cool
 
 " ale settings
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " ale settings
 " }}}
 
