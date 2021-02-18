@@ -340,7 +340,8 @@ noremap <C-l> <C-w>l
 " use :Q exit
 map :Q :q
 map <M-q> :q<Cr>
-nnoremap q :q<CR>
+" miss with recording
+" nnoremap q :q<CR>
 
 " use ctrl+s to save
 nnoremap <C-s> :<C-u>write<CR>
