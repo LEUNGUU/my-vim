@@ -38,8 +38,8 @@ PlugStart 'haya14busa/incsearch.vim'
 PlugStart 'haya14busa/incsearch-fuzzy.vim'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-" PlugStart 'junegunn/fzf'
-" PlugStart 'junegunn/fzf.vim'
+PlugStart 'junegunn/fzf'
+PlugStart 'junegunn/fzf.vim'
 
 " PlugOpt 'dzeban/vim-log-syntax'
 " PlugOpt 'w0rp/ale'
@@ -137,6 +137,12 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 " vim-cool
 let g:CoolTotalMatches = 1
 " vim-cool
+
+" fzf
+let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_command_prefix = 'fzf'
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " ale settings
 " let g:ale_set_loclist = 0
