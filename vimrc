@@ -357,6 +357,4 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-" inoremap <C-w> <up>
-" inoremap <C-s> <down>
 " }}}
