@@ -15,7 +15,7 @@ filetype plugin indent on
 syntax on
 " }}}
 
-" Plugin loading and settings
+" {{{ Plugin loading and settings
 let g:VimPack_Setup_Folders = ['after', 'autoload', 'backup', 'colors', 'doc', 'snippets', 'spell', 'swaps', 'syntax', 'tags', 'undo']
 let g:VimPack_Update_Frequency = 5
 let g:VimPack_Auto_Install = 1
@@ -49,6 +49,7 @@ PlugStart 'junegunn/fzf.vim'
 " PlugOpt 'hashivim/vim-terraform'
 " PlugOpt 'fatih/vim-go'
 " PlugOpt 'elzr/vim-json'
+" }}}
 
 " {{{ autocmds for loading extensions
 " augroup extensions
@@ -140,9 +141,13 @@ let g:CoolTotalMatches = 1
 
 " fzf
 let g:fzf_layout = { 'down': '~25%' }
-let g:fzf_command_prefix = 'fzf'
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+" fzf
 
 " ale settings
 " let g:ale_set_loclist = 0
