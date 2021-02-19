@@ -13,6 +13,7 @@ filetype plugin indent on
 
 " Switch syntax highlighting on
 syntax on
+
 " }}}
 
 " {{{ Plugin loading and settings
