@@ -38,8 +38,8 @@ PlugStart 'haya14busa/incsearch.vim'
 PlugStart 'haya14busa/incsearch-fuzzy.vim'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-PlugStart 'junegunn/fzf'
-PlugStart 'junegunn/fzf.vim'
+" PlugStart 'junegunn/fzf'
+" PlugStart 'junegunn/fzf.vim'
 
 " PlugOpt 'dzeban/vim-log-syntax'
 " PlugOpt 'w0rp/ale'
@@ -49,48 +49,6 @@ PlugStart 'junegunn/fzf.vim'
 " PlugOpt 'hashivim/vim-terraform'
 " PlugOpt 'fatih/vim-go'
 " PlugOpt 'elzr/vim-json'
-" }}}
-
-" {{{ autocmds for loading extensions
-" augroup extensions
-" 	autocmd!
-" 	" autocmd BufRead,BufNewFile *.go set filetype=go
-" 	autocmd FileType go packadd vim-go | redraw
-" 	" autocmd BufRead,BufNewFile *.yml set filetype=yaml
-" 	autocmd FileType yaml,yml packadd ansible-vim | redraw
-"         " autocmd BufRead,BufNewFile *.tf set filetype=tf
-"         autocmd FileType tf packadd vim-terraform | redraw
-"         " autocmd BufRead,BufNewFile *.json set filetype=json
-"         autocmd FileType json packadd vim-json | redraw
-" 	autocmd FileType vim,go,python,zsh,sh,yaml,yml,tf silent! packadd ale | redraw
-" augroup end
-" }}}
-
-" {{{ autocmds for everything else
-" enable Omnicomplete
-" set omnifunc=syntaxcomplete#Complete
-" augroup defaults
-"     autocmd!
-"     autocmd BufWritePost $MYVIMRC source %
-"     autocmd BufWritePre,InsertLeave * checktime
-"     autocmd BufWritePre,InsertLeave * :%s/\s\+$//e
-"     autocmd BufWritePre * silent! :%s#\($\n\s*\)\+\%$##
-"     autocmd BufWritePre,InsertLeave * silent! :retab!
-"     autocmd InsertLeave * call functions#Save()
-"     autocmd BufEnter * set cursorline
-"     autocmd BufLeave * set nocursorline
-"     autocmd BufEnter,BufLeave,BufWritePost * redraw!
-"     autocmd CursorHold,BufEnter,BufWritePost,ShellCmdPost * let f=system('[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"')
-"     autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let b=system('git branch 2>/dev/null | grep \* | sed "s/\*//g"')
-"     autocmd CursorHold,VimEnter,BufEnter,ShellCmdPost * let c=split(b, '')
-"     " autocmd VimEnter * source $MYVIMRC
-"     autocmd FileType * set textwidth=80
-"     autocmd FileType python setlocal omnifunc=python3complete#Complete
-"     autocmd BufRead,BufEnter .env :ALEDisableBuffer
-"     autocmd BufEnter,CursorHold * checktime
-"     autocmd BufNewFile,BufRead */.kube/config  setfiletype yaml
-"     autocmd CursorHold * call functions#Save()
-" augroup end
 " }}}
 
 " {{{ all plugins settings
@@ -138,24 +96,6 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 " vim-cool
 let g:CoolTotalMatches = 1
 " vim-cool
-
-" fzf
-let g:fzf_layout = { 'down': '~25%' }
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-" fzf
-
-" ale settings
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" ale settings
 " }}}
 
 " {{{ conditional settings
@@ -207,7 +147,7 @@ set virtualedit=block
 packadd! matchit
 packadd! editexisting
 
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 " if sudo, disable vim swap/backup/undo/shada/viminfo writing
 if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
@@ -252,8 +192,8 @@ if has('wildmenu')
 endif
 
  " Tabs and Indents
-" set textwidth=120    " Text width maximum chars before wrapping
-set expandtab     " Don't expand tabs to spaces.
+" set textwidth=120 " Text width maximum chars before wrapping
+set expandtab       " Don't expand tabs to spaces.
 set tabstop=2       " The number of spaces a tab is
 set softtabstop=2   " While performing editing operations
 set shiftwidth=2    " Number of spaces to use in auto(indent)
@@ -281,6 +221,7 @@ endif
 
 " Behavior
 set nowrap                      " No wrap by default
+set noautochdir
 set linebreak                   " Break long lines at 'breakat'
 set breakat=\ \	;:,!?           " Long lines break chars
 set nostartofline               " Cursor in same column for few commands
@@ -331,16 +272,11 @@ set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
 " {{{ mappings
 let mapleader=";"
-inoremap <leader>w <Esc>:w<cr>
-nnoremap <leader>x :w\|bd<cr>
-" ,e
+
 inoremap jj <Esc>
 inoremap kkk <Esc>
 inoremap hhh <Esc>
 inoremap llll <Esc>
-" Capital letter
-nnoremap <C-S-U> gUiw
-inoremap <C-S-U> <Esc>gUiwgi
 
 " use ctrl+h/j/k/l switch window
 noremap <C-h> <C-w>h
@@ -348,53 +284,16 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" use :Q exit
-map :Q :q
-map <M-q> :q<Cr>
-" miss with recording
-" nnoremap q :q<CR>
-
-" use ctrl+s to save
-nnoremap <C-s> :<C-u>write<CR>
-
 " double leader toggle visual
 nmap <Leader><Leader> V
 
-" switch between buffers
-nnoremap <leader>l :bp<cr>
-nnoremap <leader>k :bn<cr>
-
-" switch between tabs
-map <leader>1 1gt
-map <leader>2 2gt
-map <leader>3 3gt
-map <leader>4 4gt
-map <leader>5 5gt
-map <leader>6 6gt
-map <leader>7 7gt
-map <leader>8 8gt
-map <leader>9 9gt
-map <leader>t :tabnew<CR>
-
 " Toggle fold
 nnoremap <CR> za
-
-" Focus the current fold by closing all others
-nnoremap <S-Return> zMzvzt
 
 " The plugin rhysd/accelerated-jk moves through display-lines in normal mode,
 " these mappings will move through display-lines in visual mode too.
 vnoremap j gj
 vnoremap k gk
-
-" Navigation in command line
-cnoremap <C-h> <Home>
-cnoremap <C-l> <End>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-
-" Remove spaces at the end of lines
-nnoremap <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " Start an external command with a single bang
 nnoremap ! :!
@@ -430,20 +329,6 @@ vnoremap <leader>x x
 nnoremap <leader>X X
 vnoremap <leader>X X
 
-" tab complete
-"set tags=tags
-"set autochdir
-
-"function! CleverTab()
-"  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"    return "\<Tab>"
-"  elseif strpart( getline('.'), col('.')-2, 2) =~ '\s$'
-"    return "\<Tab>"
-"  else
-"    return "\<C-N>"
-"  endif
-"endfunction
-"inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
@@ -451,8 +336,4 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-inoremap <C-a> <left>
-inoremap <C-d> <right>
-" inoremap <C-w> <up>
-" inoremap <C-s> <down>
 " }}}
