@@ -13,6 +13,7 @@ filetype plugin indent on
 
 " Switch syntax highlighting on
 syntax on
+
 " }}}
 
 " {{{ Plugin loading and settings
@@ -23,50 +24,14 @@ let g:VimPack_Auto_Update = 1
 
 call pack#load()
 
-" PlugStart 'editorconfig/editorconfig-vim'
 PlugStart 'tpope/vim-commentary'
-PlugStart 'vim-scripts/vim-indent-object'
-PlugStart 'tpope/vim-surround'
-PlugStart 'bronson/vim-visual-star-search'
-PlugStart 'tpope/vim-repeat'
-PlugStart 'vim-airline/vim-airline'
-PlugStart 'vim-airline/vim-airline-themes'
 PlugStart 'w0ng/vim-hybrid'
 PlugStart 'itchyny/vim-cursorword'
-PlugStart 'mg979/vim-visual-multi'
-PlugStart 'haya14busa/incsearch.vim'
-PlugStart 'haya14busa/incsearch-fuzzy.vim'
 PlugStart 'rhysd/accelerated-jk'
 PlugStart 'romainl/vim-cool'
-" PlugStart 'junegunn/fzf'
-" PlugStart 'junegunn/fzf.vim'
-
-" PlugOpt 'dzeban/vim-log-syntax'
-" PlugOpt 'w0rp/ale'
-" PlugOpt 'mileszs/ack.vim'
-" command! -nargs=* Ack :packadd ack.vim | Ack <f-args>
-" PlugOpt 'pearofducks/ansible-vim'
-" PlugOpt 'hashivim/vim-terraform'
-" PlugOpt 'fatih/vim-go'
-" PlugOpt 'elzr/vim-json'
 " }}}
 
 " {{{ all plugins settings
-" vim-airline
-let g:airline_powerline_fonts=1
-let g:airline_theme = 'wombat'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-function! ArilineInit()
-  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-  let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks', '%F'])
-  " let g:airline_section_c = airline#section#create(['filetype'])
-  let g:airline_section_x = airline#section#create(['%P'])
-  let g:airline_section_y = airline#section#create(['%B'])
-  let g:airline_section_z = airline#section#create_right(['%l', '%c'])
-endfunction
-" vim-airline
-
 " vim-hybrid
 set background=dark
 colorscheme hybrid
@@ -76,22 +41,6 @@ colorscheme hybrid
 nmap <silent>j <Plug>(accelerated_jk_gj)
 nmap <silent>k <Plug>(accelerated_jk_gk)
 " accelerated_jk
-
-" vim-terraform
-" let g:terraform_align=1
-" let g:terraform_fmt_on_save=1
-" vim-terraform
-
-" ansible-vim
-" let g:ansible_unindent_after_newline = 1
-" let g:ansible_attribute_highlight = "ob"
-" ansible-vim
-
-" incsearch-fuzzy
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
-" incsearch-fuzzy
 
 " vim-cool
 let g:CoolTotalMatches = 1
@@ -128,6 +77,7 @@ endif
 " }}}
 
 " {{{ common settings
+set path+=** "find files
 set synmaxcol=1000
 set modeline
 set report=0
@@ -143,10 +93,6 @@ set fileformats=unix,dos,mac
 set virtualedit=block
 " set formatoptions+=1
 
-" builtin plugins
-packadd! matchit
-packadd! editexisting
-
 " autocmd BufEnter * silent! lcd %:p:h
 
 " if sudo, disable vim swap/backup/undo/shada/viminfo writing
@@ -158,20 +104,10 @@ if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
 	set nobackup
 	set nowritebackup
 	set noundofile
-	if has('nvim')
-		set shada="NONE"
-	else
-		set viminfo="NONE"
-	endif
 endif
 
 " History saving
 set history=1000
-if has('nvim')
-	set shada='300,<50,@100,s10,h
-else
-	set viminfo='300,<10,@50,h,n$DATA_PATH/viminfo
-endif
 
 " clipboard
 if has('clipboard')
@@ -271,8 +207,8 @@ set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 " }}}
 
 " {{{ mappings
-let mapleader=";"
 
+let mapleader=";" 
 inoremap jj <Esc>
 inoremap kkk <Esc>
 inoremap hhh <Esc>
@@ -285,7 +221,7 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " double leader toggle visual
-nmap <Leader><Leader> V
+nmap <leader><leader> V
 
 " Toggle fold
 nnoremap <CR> za
@@ -329,11 +265,22 @@ vnoremap <leader>x x
 nnoremap <leader>X X
 vnoremap <leader>X X
 
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+function! CleverTab()
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  elseif strpart( getline('.'), col('.')-2, 2) =~ '\s$'
+    return "\<Tab>"
+  else
+    return "\<C-N>\<C-N>"
+  endif
+endfunction
+
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+inoremap <C-f> <Right>
+inoremap <C-h> <Left>
 " }}}
